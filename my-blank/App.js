@@ -2,10 +2,23 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View,Button } from 'react-native';
 
+const Texto=(props)=>{
+  const{children}=props
+  return(<Text>{children}</Text>) 
+}
+
+/* zona 2 , el main*/
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+
+        <Texto>"hola"</Texto>
+        <Texto>"mundo"</Texto>
+        <Texto>"React Native"</Texto>
+        <Text>Hola mundo React Native</Text>
+      <Button title='Presioname!'></Button>
+      
     </View>
   );
 }
