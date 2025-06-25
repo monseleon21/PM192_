@@ -1,45 +1,122 @@
-/* zona 1, aqui van importaciones  */
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View,Button } from 'react-native';
-import React, {useState} from 'react';
+/* Zone 1: Importaciones */
+import { ImageBackground, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
 
-const Texto=({style})=>{
-  const [contenido, setContenido]=useState('hola mundo ')
-  const actualizarTexto=()=>{setContenido('Estado actualizado')}
-  return(<Text style={[styles.text,style]} onPress={actualizarTexto}>{contenido}</Text>) 
-}
-
-/* zona 2 , el main*/
-export default function App() {
+const FondoBienvenida = () => {
   return (
-    <View style={styles.container}>
-      <StatusBar style="auto" />
+    <ImageBackground
+      source={require('./assets/fondo.jpg')}
+      style={styles.fondo}
+    >
+      <View style={styles.contenido}>
+        <Text style={styles.titulo}>Este es el Splash Screen</Text>
+      </View>
+    </ImageBackground>
+  );
+};
 
-        <Texto style={styles.red}></Texto>
-        <Texto style={styles.green}></Texto>
-        <Texto style={styles.black}></Texto>
-        
-      
-    </View>
+/* Zone 2: Main */
+
+export default function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);  // Ocultar splash después de 3 segundos
+    }, 5000);
+
+    return () => clearTimeout(timer); // Limpiar timer al desmontar
+  }, []);
+
+  return (
+    <SafeAreaView style={styles.container}>
+      {showSplash ? (
+        <FondoBienvenida />
+      ) : (
+        <View style={styles.mainContent}>
+          <Text style={styles.mainText}>Pantalla principal</Text>
+          {/* Aquí va el resto de tu app después del splash */}
+        </View>
+      )}
+    </SafeAreaView>
   );
 }
 
-
-/* zona 3, estilos */ 
+/* Zone 3: Estilos */
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'base-line',
+  },
+  fondo: {
+    flex: 1,
+  },
+  contenido: {
+    flex: 1,
     justifyContent: 'center',
-    flexDirection: 'column',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)', // para oscurecer la imagen
   },
-  text:{
-  color:'white',
-  fontSize:'25',
-   
+  titulo: {
+    fontSize: 28,
+    color: 'white',
+    fontWeight: 'bold',
   },
-  red:{backgroundColor:'red'},
-  green:{backgroundColor:'green'},
-  black:{backgroundColor:'black'},
+  mainContent: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  mainText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+});
+
+Image Bckground
+/* Zone 1: Importaciones */
+import { ImageBackground, StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import React from 'react';
+
+const FondoBienvenida = () => {
+  return (
+    <ImageBackground
+      source={require('./assets/fondo.jpg')}
+      style={styles.fondo}
+    >
+      <View style={styles.contenido}>
+        <Text style={styles.titulo}>¡Pantalla de unicio!</Text>
+      </View>
+    </ImageBackground>
+  );
+};
+
+/* Zone 2: Main */
+
+export default function App() {
+  return (
+    <SafeAreaView style={styles.container}>
+      <FondoBienvenida />
+    </SafeAreaView>
+  );
+}
+
+/* Zone 3: Estilos */
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  fondo: {
+    flex: 1,
+  },
+  contenido: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0.4)', // para oscurecer la imagen
+  },
+  titulo: {
+    fontSize: 28,
+    color: 'white',
+    fontWeight: 'bold',
+  },
 });
