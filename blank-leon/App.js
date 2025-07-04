@@ -1,21 +1,21 @@
-/* FondoBienvenida.jsx */
-import { ImageBackground, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View } from 'expo-native';
 import React from 'react';
+import { Image } from 'react-native';
 
-const FondoBienvenida = () => {
+const fondoB =()=> {
   return (
     <ImageBackground
-      source={require('./assets/fondo.jpg')}
-      style={styles.fondo}
+    source={require('./assets/fondom.jpg')}
+    style={styles.fondom}
     >
-      <View style={styles.contenido}>
+<View style={styles.contenido}>
         <Text style={styles.titulo}>¡Pantalla de inicio!</Text>
       </View>
     </ImageBackground>
   );
 };
 
-export default FondoBienvenida;
+export default fondoB;
 
 const styles = StyleSheet.create({
   fondo: {
